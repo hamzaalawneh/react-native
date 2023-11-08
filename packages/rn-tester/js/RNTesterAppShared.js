@@ -8,7 +8,7 @@
  * @flow
  */
 
-import {RNTesterEmptyBookmarksState} from './components/RNTesterEmptyBookmarksState';
+import NativeDevSettings from 'react-native/Libraries/NativeModules/specs/NativeDevSettings';
 import RNTesterModuleContainer from './components/RNTesterModuleContainer';
 import RNTesterModuleList from './components/RNTesterModuleList';
 import RNTesterNavBar, {navBarHeight} from './components/RNTesterNavbar';
@@ -25,7 +25,7 @@ import {
   initialNavigationState,
 } from './utils/testerStateUtils';
 import * as React from 'react';
-import {BackHandler, StyleSheet, View, useColorScheme} from 'react-native';
+import {Button, BackHandler, StyleSheet, View, useColorScheme} from 'react-native';
 
 // RNTester App currently uses in memory storage for storing navigation state
 
@@ -157,6 +157,7 @@ const RNTesterApp = (): React.Node => {
         style={StyleSheet.compose(styles.container, {
           backgroundColor: theme.GroupedBackgroundColor,
         })}>
+        <Button onPress={() => NativeDevSettings.setIsDebuggingRemotely(true)} title="Crash me please" />
         {activeModule != null ? (
           <RNTesterModuleContainer
             module={activeModule}

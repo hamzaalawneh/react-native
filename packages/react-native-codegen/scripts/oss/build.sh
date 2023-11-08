@@ -41,7 +41,8 @@ if [[ ${FBSOURCE_ENV:-0} -eq 1 ]]; then
   # Custom FB-specific setup
   pushd "$CODEGEN_DIR" >/dev/null
 
-  "$YARN_BINARY" install 2> >(grep -v '^warning' 1>&2)
+  # "$YARN_BINARY" install 2> >(grep -v '^warning' 1>&2)
+  "$YARN_BINARY" install
   # Note: Within FBSOURCE_ENV, this has to explicitly run build.
   "$YARN_BINARY" run build
 
@@ -66,7 +67,8 @@ else
   pushd "$TMP_DIR" >/dev/null
 
   # Note: this automatically runs build as well.
-  "$YARN_BINARY" install 2> >(grep -v '^warning' 1>&2)
+  # "$YARN_BINARY" install 2> >(grep -v '^warning' 1>&2)
+  "$YARN_BINARY" install
 
   popd >/dev/null
 
